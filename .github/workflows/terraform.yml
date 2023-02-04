@@ -6,6 +6,12 @@ on:
     branches:
       - develop
 
+  pull_request:
+    branches:
+      - develop
+      - main
+
+
 jobs:
   terraform:
     name: "Terraform"
