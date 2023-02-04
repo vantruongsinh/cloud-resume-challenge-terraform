@@ -122,4 +122,5 @@ resource "aws_apigatewayv2_stage" "example" {
 
 output "apigateway_url" {
   value = "${aws_apigatewayv2_stage.example.invoke_url}visitor-count"
+
 }
