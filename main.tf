@@ -17,7 +17,7 @@ provider "aws" {
 }
 
 resource "aws_dynamodb_table" "dynamodb-table" {
-  name           = "VisitorCount1"
+  name           = "VisitorCount"
   billing_mode   = "PROVISIONED"
   read_capacity  = 1
   write_capacity = 1
@@ -28,13 +28,13 @@ resource "aws_dynamodb_table" "dynamodb-table" {
   }
 
   tags = {
-    Name        = "dynamodb-table-1"
+    Name        = "dynamodb-table"
     Environment = "production"
   }
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
-  name = "lambda-dynamodb-role1"
+  name = "lambda-dynamodb-role"
 
   assume_role_policy = <<EOF
 {
@@ -65,7 +65,7 @@ resource "aws_lambda_function" "lambda_function" {
   # If the file is not in the current working directory you will need to include a
   # path.module in the filename.
   filename      = "lambda_function.zip"
-  function_name = "get_visitor_count1"
+  function_name = "get_visitor_count"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "lambda_function.lambda_handler"
 
@@ -84,7 +84,7 @@ resource "aws_lambda_function" "lambda_function" {
 }
 
 resource "aws_apigatewayv2_api" "apigateway" {
-  name          = "visitor-count-api-gw-1"
+  name          = "visitor-count-api-gw"
   protocol_type = "HTTP"
   cors_configuration {
     allow_origins = ["*"]
